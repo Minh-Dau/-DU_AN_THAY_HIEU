@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Header Design</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    /* Reset mặc định và font */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-color: #f4f4f4;
+    }
+
+    /* Header */
+    header { 
+    background-color: #fff;
+    padding: 15px 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 1000; 
+    }
+
+    #header_trangchinh {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      
+    }
+
+    /* Logo */
+    .logo img {
+      width: 100px;
+      height: auto;
+    }
+
+    /* Tìm kiếm */
+    .search-wrapper {
+      position: relative;
+      width: 700px;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 12px 50px 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    .search-input:focus {
+      border-color: #afabab;
+    }
+
+    .search-wrapper img {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+
+    /* Giỏ hàng */
+    #giohang img {
+      width: 35px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    #giohang {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    #khachhang {
+      display: flex;
+      align-items: center;
+      position: relative; 
+    }
+
+    #khachhang img {
+      width: 35px;
+      height: auto;
+      cursor: pointer;
+    }
+
+    #giohang::after {
+      content: "10";
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #ff6f61;
+      color: white;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 12px;
+    }
+
+    .tooltip {
+      display: none;
+      position: absolute;
+      top: 100%; 
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      z-index: 1;
+    }
+
+    #khachhang:hover .tooltip {
+      display: block; 
+    }
+
+    .tooltip a {
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: #333;
+      width: 120px;
+      transition: background-color 0.3s;
+    }
+
+    .tooltip a:hover {
+      background-color: #f0f0f0; 
+    }
+    .ten_user{
+         font-size: 15px;
+    }
+  </style>
+</head>
+  <header>
+    <div id="header_trangchinh">
+      <div class="logo">
+        <img src="anh do an/Logo_Trường_Đại_học_Sư_phạm_Kỹ_thuật_Vĩnh_Long.png" alt="Logo" id="logo">
+      </div>
+      <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Tìm Kiếm">
+        <img src="anh do an/magnifying-glass.png" alt="Search Icon">
+      </div>
+      <div id="giohang">
+        <img src="anh do an\shopping-cart.png" alt="" id="anh_giohang">
+      </div>
+      <div id="khachhang">
+        <img src="anh do an/avatar.png" alt="" id="anh_khachhang">
+        <div class="tooltip">
+            <a href="#orders">Đơn Mua</a>
+            <a href="">Đăng Xuất</a>
+            <a href="login">Đăng Nhập</a>
+            <a href="#register">Đăng Ký</a>
+        </div>
+          <% if @user %>
+          <h1 class="ten_user"> <%= @user[:data]["username"] %></h1>
+        <% else %>
+          <h1 class="error-message">Người dùng không tồn tại</h1>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </header>
+  <body>
+  </body>
+</html>

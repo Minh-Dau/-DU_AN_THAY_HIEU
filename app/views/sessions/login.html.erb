@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<style>
+    #main{
+        display: flex;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        margin-top: -100px;
+    }
+    #dangnhap{
+        border-radius: 10px;
+        padding: 50px;
+        background-color: #e6e5e5;
+        margin-top: -100px;
+        width: 500px;
+        box-shadow: 0 4px 10px rgba(196, 18, 18, 0.1);
+        
+    }
+    input[type="text"], input[type="password"] {
+        width: 92%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+    }
+    td{
+        padding: 10px 0;
+    }
+    h2,.banchuaco{
+        text-align: center;
+        margin: 0;
+    }
+    #nhan{
+        width: 100%;
+        padding: 10px;
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        margin-top: 10px;
+    }
+    #nhan:hover{
+        background-color: #45a049;
+    }
+    .dangnhapgg{
+        text-align: center;
+    }
+    .gg {
+        width: 30%;
+        padding: 5px;
+        background-color: #db4437;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        font-size: 13px;
+        display: block;
+        margin: 0 auto;
+    }
+    .alert {
+    text-align: center;
+    color: red;
+    border-radius: 5px;
+    }
+    #check{
+        float: right;
+        padding: 0 0;
+        color: #333;
+        font-size: 14px;
+    }
+    #checkone{
+            padding: 0%;
+    }
+    .aler {
+    text-align: center;
+    color: red;
+    border-radius: 5px;
+    }
+    #hienthithongbao{
+        padding:0;
+        margin:0;
+        color:red;
+        text-align: center;
+    }
+</style>
+<body>
+    <%= render 'header' %>
+    <form action="/login" id="main" method="POST" >
+        <%= form_with url: login_path, method: :post, html: { id: 'login-form' } do |f| %>
+            <div>
+                <table id="dangnhap">
+                    <tr>
+                        <td colspan="2">
+                            <h2> ĐĂNG NHẬP TÀI KHOẢN</h2>
+                        </td>
+                    </tr>
+                    <tr class="banchuaco">
+                        <td colspan="2"> Bạn chưa có tài khoản? <a href="/register">Đăng ký</a></td>
+                    </tr>
+                    <tr>
+                        <td>Email:</td>
+                        <td><input type="text" placeholder="Nhập email" id="email" name="email" required></td>
+                    </tr>
+                    <tr>
+                        <td>Mật khẩu:</td>
+                        <td><input type="password" placeholder="Nhập mật khẩu" id="password" name="password" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" id="checkone">
+                            <div class="checkbox-container" id="check">
+                                <input type="checkbox" id="hienthi">
+                                <label for="hienthi">Hiển thị mật khẩu</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> Quên mật khẩu? Nhấn vào <a href="<%= quenmatkhau_path %>">đây</a></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> <button type="submit" id="nhan">Đăng Nhập</button></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" class="dangnhapgg"> Hoặc đăng nhập bằng</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"> <button type="button" class="gg"> G+ Google</button></td>
+                    </tr>
+                </table>
+            </div>
+        <% end %>
+    </form>
+    <%= render "footer"%>
+</body>
+</html>
+<script>
+
+        document.getElementById('hienthi').addEventListener('change', function() {
+            const passwordField = document.getElementById('password');
+            const hienthitb = document.getElementById('hienthithongbao');
+            if (this.checked) {
+                passwordField.type = 'text'; 
+            } else {
+                passwordField.type = 'password';
+            }
+        });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Listen for form submission using remote AJAX
+    document.addEventListener('submit', function (event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const form = event.target;
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        })
+        .then(response => response.json())
+        .then(data => {
+        if (data.success) {
+            Swal.fire({
+            title: "Good job!",
+            text: data.message,
+            icon: "success"
+            }).then(() => {
+            window.location.href = "<%= trangchinh_path %>";
+            });
+        } else {
+            Swal.fire({
+            title: "Oops...",
+            text: data.message,
+            icon: "error"
+            });
+        }
+        })
+        .catch(error => {
+        console.error('Error:', error);
+        });
+    });
+</script>
+

@@ -1,0 +1,65 @@
+<%= form_with url: show_path, method: :post, html: { class: 'user-info-form' } do %>
+  <div class="user-info-container">
+    <% if @user %>
+      <h1 class="welcome-message">Chào mừng, <%= @user[:data]["username"] %>!</h1>
+      <p>Email: <span class="user-email"><%= @user[:data]["email"] %></span></p>
+      <p>Số điện thoại: <span class="user-phone"><%= @user[:data]["sodienthoai"] %></span></p>
+      <p>Địa chỉ: <span class="user-address"><%= @user[:data]["dia_chi"] || 'Chưa có thông tin' %></span></p>
+    <% else %>
+      <h1 class="error-message">Người dùng không tồn tại</h1>
+    <% end %>
+  </div>
+<% end %>
+
+<%= link_to 'Đăng xuất', login_path, method: :delete, data: { confirm: "Bạn có chắc chắn muốn đăng xuất?" }, class: 'logout-link' %>
+
+<% if flash[:notice] %>
+  <script>
+    alert("<%= flash[:notice] %>");
+  </script>
+<% end %>
+<style>
+  .user-info-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+
+  .welcome-message {
+    font-size: 24px;
+    color: #333;
+  }
+
+  .error-message {
+    color: red;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #555;
+  }
+
+  .user-email, .user-phone, .user-address {
+    font-weight: bold;
+    color: #007bff; /* Blue color for emphasis */
+  }
+
+  .logout-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  .logout-link:hover {
+    background-color: #c82333; /* Darker red on hover */
+  }
+</style>

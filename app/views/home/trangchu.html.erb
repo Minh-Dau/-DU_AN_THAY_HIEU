@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding-top: 5%;
+        }
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: rgb(207, 249, 184);
+        }
+        @media (max-width: 400px){
+            header{
+                display: none;
+            }
+        }
+        #logo {
+            height: 80px;
+        }
+        #menu-container {
+            display: flex;
+            justify-content:center;
+            margin-right: 5%;
+            flex: 1;
+        }
+
+        #menu {
+            display: flex;
+            gap: 50px;
+            flex-wrap: nowrap;
+            justify-content: center;
+        }
+
+        #menu a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        @media (max-width: 400px) {
+            #menu {
+                flex-direction: column;
+            }
+        }
+        #dangnhap-container {
+            display: flex;
+            align-items: center;
+        }
+        #dangnhap-icon {
+            width: 20px;
+            height: 20px;
+        }
+        #dangnhap{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        #image-container {
+            position: relative;
+            width: 100%;
+        }
+        #anhnen {
+            width: 100%;
+        }
+        .chu-anh {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        h2{
+            margin: 0;
+        }
+        @media(max-width:768px){
+            .chu-anh{
+                font-size: 2vw;
+            }
+        }
+        @media (max-width:400px) {
+            .chu-anh{
+                font-size: 3vw;
+            }
+        }
+        #text-container{
+            display: flex;
+            justify-content: left;
+            margin-left: 20%;
+            margin-top: 2%;
+            align-items: center;
+        }
+        .text-container{
+            max-width: 60%;
+            margin-left: 20%;
+            padding: 2%;
+            text-align: justify;
+            font-size: 20px;
+            padding-top: 5px;
+        }
+        .text-container-thucan{
+            font-size: 30px;
+            margin-left: 20%;
+           
+        }
+        #duongngang{
+            display: flex;
+            justify-content: center;
+            max-width: 80%;
+            height: 5px;
+            background-color: rgb(110, 211, 99);
+            border: 0px;
+        }
+        #cacloaithucan{
+            display: flex;
+            justify-content: space-between;
+        }
+        #thucan_left{
+            max-width: 30%;
+            margin-left: 20%;
+            text-align: justify;
+        }
+        #thucan_right{
+            max-width: 30%;
+            margin-right: 15%;
+            text-align: justify;
+        }
+        .container{
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px  auto;
+            max-width: 1200px;
+        
+        }
+        .card{
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            width: 20%;
+            margin: 2%;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .card:hover {
+            transform: scale(1.1);
+        }
+        .card img {
+            width: 100%;
+            height: 180px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            object-fit: cover;
+        }
+        .card h3{
+            text-align: center;
+            margin: 0;
+        }
+        .card a{
+            display: block;
+            text-align: center;
+            border: 1px black solid;
+            border-radius: 20px;
+            padding: 10px;
+            margin: 10px;
+            text-decoration: none;
+            color: rgb(24, 16, 16);
+            transition: background-color 0.3s;
+        }
+        .card a:hover{
+            background-color: #007BFF;
+            color: white;
+        }
+        #anh_two{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .phan_one{
+            display: flex;
+            justify-content: space-between;
+            margin-left: 20%;
+            margin-right: 20%;
+        }
+        .information{
+            font-size: 20px;
+            max-width: 40%;
+            line-height: 1.5;
+            margin-top: 10%;
+        }
+        .information_anh{
+            max-width: 500px;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #nghiencuu_left{
+            text-align: justify
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div>
+            <img src="anh do an/Logo_Trường_Đại_học_Sư_phạm_Kỹ_thuật_Vĩnh_Long.png" alt="" id="logo">
+        </div>
+        <div id="menu-container">
+            <div id="menu">
+                <a href="">Trang Chủ</a>
+                <a href="trangchinh">Sản Phẩm</a>
+                <a href="">Giới Thiệu</a>
+                <a href="">Liên Hệ</a>
+            </div>
+        </div>
+    </header>
+    <form action="/trangchu">
+        <div id="image-container">
+            <img src="anh do an/anhnen1.jpg" alt="Animal Feed Image" id="anhnen">
+            <div class="chu-anh">
+                <h2>THỨC ĂN CHĂN NUÔI</h2>
+                <h2>Chúng tôi cung cấp tất cả các loại thức ăn chăn nuôi</h2>
+                <hr>
+            </div>
+        </div>
+        <div >
+            <div id="text-container">
+                <img src="d:\HINH ANH\ART\anh.webp" alt="">
+                <h2>Bạn có thể nhận thấy sự khác biệt</h2>
+            </div>
+            <div class="text-container">
+                Việc cân bằng giữa nhu cầu dinh dưỡng cho vật nuôi và những tiêu chuẩn ngày càng khắt khe của thế giới về thực phẩm không chỉ là một nhiệm vụ, mà là một sứ mệnh mà "Tên Thương Hiệu" kiên định theo đuổi mỗi ngày. 
+                Chúng tôi hiểu rằng, việc tạo ra những sản phẩm dinh dưỡng động vật chất lượng cao không bao giờ có con đường tắt. Đó là lý do tại sao chúng tôi không ngừng nghiên cứu,
+                từ việc lựa chọn kỹ lưỡng nguyên liệu đầu vào cho đến việc tối ưu hóa từng thành phần dinh dưỡng, để đảm bảo phù hợp với từng giai đoạn phát triển của các nhóm vật nuôi khác nhau.
+                Chúng tôi đi sâu vào nghiên cứu lợi ích sức khỏe, không chỉ trong ngắn hạn mà còn xem xét giá trị dinh dưỡng trong suốt vòng đời của vật nuôi. Mỗi công thức chúng tôi phát triển đều được cân nhắc cẩn trọng,
+                không chỉ dựa trên nhu cầu của vật nuôi mà còn trên yếu tố môi trường và điều kiện khí hậu của từng vùng địa lý. Mục tiêu cuối cùng của chúng tôi không chỉ là tối ưu hóa năng suất và sức khỏe của vật nuôi,
+                mà còn đảm bảo rằng quy trình sản xuất thức ăn chăn nuôi của chúng tôi đáp ứng được những kỳ vọng khắt khe nhất về chất lượng và an toàn thực phẩm, góp phần xây dựng một hệ sinh thái bền vững cho ngành chăn nuôi toàn cầu.
+                Với "Tên Thương Hiệu", mỗi sản phẩm thức ăn chăn nuôi là kết quả của quá trình nghiên cứu, thử nghiệm và hoàn thiện không ngừng, nhằm mang lại giải pháp dinh dưỡng toàn diện, phù hợp cho mọi điều kiện và mục tiêu sản xuất 
+                của người chăn nuôi.
+            </div>
+            <div >
+                <hr id="duongngang"> 
+            </div>
+            <div >
+                <h2 class="text-container-thucan">Các Loại Thức Ăn Chăn Nuôi</h2>
+            </div>
+            <div >
+                <div id="cacloaithucan">
+                    <p id="thucan_left">
+                        Mỗi trang trại đều có những yêu cầu riêng biệt về thức ăn chăn nuôi, phụ thuộc vào nhiều yếu tố đặc thù. Trong đó, loại vật nuôi và môi trường sống của chúng đóng vai trò then chốt. Những yếu tố này không chỉ quyết định đến nhu cầu dinh dưỡng 
+                        mà còn ảnh hưởng trực tiếp đến hiệu suất và sức khỏe lâu dài của vật nuôi. Hiểu rõ được điều này, chúng tôi luôn điều chỉnh các giải pháp dinh dưỡng phù hợp, đảm bảo rằng mọi trang trại, dù lớn hay nhỏ, đều đạt được kết quả tốt nhất từ những sản phẩm chúng tôi cung cấp.</p>
+                    <p id="thucan_right">""Tên Thương Hiệu" chuyên phát triển và sản xuất các sản phẩm dinh dưỡng được tối ưu hóa cho từng giai đoạn phát triển của vật nuôi, dựa trên điều kiện thực tế của mỗi trang trại và mục tiêu cụ thể của người chăn nuôi. Chúng tôi không chỉ cung cấp dinh dưỡng phù hợp mà còn là
+                         những giải pháp toàn diện, giúp người chăn nuôi đạt được hiệu suất tối đa và đảm bảo sức khỏe lâu dài cho vật nuôi.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="card">
+                    <img src="anh do an/anhnen.jpg" alt="">
+                    <h3> Thức ăn cho bò</h3>
+                    <p>Sản phẩn thức ăn dành cho bò sữa, bò thịt, bò cái </p>
+                    <a href="#">Xem Sản Phẩm</a>
+                </div>
+                <div class="card">
+                    <img src="anh do an/anhnen.jpg" alt="">
+                    <h3> Thức ăn cho lợn</h3>
+                    <p>Sản phẩn dành cho lợn con, lợn cái,......</p>
+                    <a href="#">Xem Sản Phẩm</a>
+                </div>
+                <div class="card">
+                    <img src="anh do an/anhnen.jpg" alt="">
+                    <h3>Thức ăn cho dê</h3>
+                    <p>Sản phẩm dành cho dê con, dê mẹ, .....</p>
+                    <a href="#">Xem Sản Phẩm</a>
+                </div>
+                <div class="card">
+                    <img src="anh do an/anhnen.jpg" alt="">
+                    <h3>Thức ăn cho thỏ</h3>
+                    <p>Sản phẩm dành cho thỏ ......................</p>
+                    <a href="#">Xem Sản Phẩm</a>
+                </div>
+                <div class="card">
+                    <img src="anh do an/anhnen.jpg" alt="">
+                    <h3>Thức ăn cho cừu</h3>
+                    <p>Thức ăn dành cho cừu.....</p>
+                    <a href="#">Xem Sản Phẩm</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div>
+                <hr id="duongngang"> 
+            </div>
+        </div>
+        <div id="container_two">
+            <div id="anh_two">
+                <img src="anh do an/background.jpg" alt="" >
+            </div>
+            <div>
+                <h2 class="text-container-thucan"> Lựa chọn dinh dưỡng phù hợp cho vật nuôi</h2>
+            </div>
+            <div class="text-container">
+                Với sự gia tăng dân số toàn cầu và mức sống ngày càng cao, nhu cầu về nông nghiệp,
+                đặc biệt là chăn nuôi và sản xuất lương thực, đang không ngừng gia tăng. 
+                Quá trình sản xuất thực phẩm phải được tối ưu hóa và thực hiện một cách bền vững.
+                Là một trong những nhà cung cấp hàng đầu về dinh dưỡng cho động vật, 
+                "Tên Thương Hiệu" luôn đồng hành cùng người chăn nuôi và các nhà sản xuất đạm động vật như thịt, 
+                sữa, trứng, và cá, giúp họ hoạt động hiệu quả hơn. Không chỉ mang đến các sản phẩm thức ăn chăn
+                nuôi chất lượng cao, chúng tôi còn chia sẻ kiến thức chuyên môn về dinh dưỡng, sức khỏe vật
+                nuôi và kỹ thuật chăn nuôi hiện đại, giúp khách hàng không chỉ nâng cao hiệu quả sản xuất mà 
+                còn áp dụng những tiến bộ công nghệ vào mô hình chăn nuôi của mình. De Heus cam kết hỗ trợ
+                nông dân trong việc giảm thiểu tác động sinh thái và phát triển bền vững.
+            </div>
+        </div>
+        <div>
+            <div>
+                <hr id="duongngang"> 
+            </div>
+        </div>
+        <div class="phan_one">
+            <div class="information">
+                <h2 > Nghiên cứu và Phát triển</h2>    
+                <p id="nghiencuu_left">Chúng tôi không ngừng mở rộng kiến thức trên mọi lĩnh vực trong toàn bộ chuỗi cung ứng. 
+                    Với mục tiêu phát triển toàn diện, chúng tôi xây dựng mối quan hệ hợp tác với các đối tác ở tất cả các
+                    giai đoạn, từ các công ty cung cấp con giống đến các cơ sở giết mổ. Đồng thời, để nâng cao chuyên môn
+                    và kinh nghiệm, chúng tôi hợp tác chặt chẽ với các viện nghiên cứu hàng đầu và các trang trại thử nghiệm
+                    trên toàn cầu.</p>
+            </div>
+            <div class="information">
+                <img src="anh do an/anh1.jpg" alt="" class="information_anh">
+            </div>
+        </div>
+        <div class="phan_one">
+            <div class="information">
+                <img src="anh do an/anh2.webp" alt="" class="information_anh">
+            </div>
+            <div class="information">
+                <h2 > "Tên Thương Hiệu" đem đến những giải pháp chăn nuôi toàn diện</h2>    
+                <p id="nghiencuu_left">De Heus chuyên cung cấp các sản phẩm thức ăn chăn nuôi chất lượng cao 
+                    và những giải pháp dinh dưỡng toàn diện, nhằm tối ưu hóa sức khỏe của vật nuôi và mang lại 
+                    hiệu quả kinh tế tốt nhất cho người chăn nuôi. Ngoài ra, chúng tôi còn đem đến cho người
+                    chăn nuôi những dịch vụ và giải pháp chăn nuôi hỗ trợ, đồng hành cùng sự phát triển bền 
+                    vững trong nghề chăn nuôi.
+                </p>
+            </div>
+        </div>
+        <div class="phan_one">
+            <div class="information">
+                <h2 > Chất lượng làm nên thương hiệu</h2>    
+                <p id="nghiencuu_left">Chất lượng luôn là kim chỉ nam của chúng tôi trong hơn một trăm năm qua. 
+                    Tất cả các địa điểm sản xuất của chúng tôi phải luôn đáp ứng các tiêu chuẩn chất lượng mới nhất.
+                     Chúng tôi cũng ưu tiên áp dụng tiêu chí chất lượng cho nghiên cứu,
+                     chiến lược hoạt động và cho tất cả các sản phẩm của chúng tôi.</p>
+            </div>
+            <div class="information">
+                <img src="anh do an/cows-2641195_1280.jpg" alt="" class="information_anh">
+            </div>
+        </div>
+        <div>
+            <div></div>
+        </div>
+        <%= render 'footer'%>
+    </form>
+</body>
+</html>

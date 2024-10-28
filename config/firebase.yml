@@ -1,0 +1,9 @@
+development:
+  database_url: "https://do-an-c9a0a-default-rtdb.firebaseio.com/"
+  secret_key: "FIqeWxFansbjJcVOXHRTAUHUunamkMyMT7Y5Dxan"
+  api_key: "AIzaSyALnLIj3Hq6gt3ryaiysfIjHMxkbYQS_7Q"
+
+production:
+  database_url: "https://do-an-c9a0a-default-rtdb.firebaseio.com/"
+  secret_key: "FIqeWxFansbjJcVOXHRTAUHUunamkMyMT7Y5Dxan"
+  api_key: "AIzaSyALnLIj3Hq6gt3ryaiysfIjHMxkbYQS_7Q"

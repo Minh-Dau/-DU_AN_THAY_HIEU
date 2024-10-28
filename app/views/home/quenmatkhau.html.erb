@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<%= form_authenticity_token %>">
+    <title>Quên Mật Khẩu</title>
+    <style>
+        #main {
+            display: flex;
+            justify-content: center;
+            height: 100vh;
+            align-items: center;
+            margin-top: -180px;
+        }
+        #quenmatkhau {
+            background-color: #e6e5e5;
+            border-radius: 10px;
+            padding: 50px;
+            width: 500px;
+            box-shadow: 0 4px 10px rgba(196, 18, 18, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin: 0;
+        }
+        input[type="email"], input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            width: 92%;
+        }
+        td {
+            padding: 10px 0;
+        }
+        #nhan {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        #nhan:hover {
+            background-color: #45a049;
+        }
+        #gui {
+            border: 1px solid rgb(141, 139, 139);
+            padding: 10px;
+            background-color: #ddd;
+            color: #555454;
+        }
+        #gui:hover {
+            background-color: #a1a1a1;
+            color: white;
+        }
+        #quaylaidangnhap {
+            text-align: center;
+        }
+         #gui:disabled {
+            background-color: gray; /* Thay đổi màu nền khi nút bị vô hiệu hóa */
+            cursor: not-allowed; /* Thay đổi con trỏ khi nút bị vô hiệu hóa */
+        }
+    </style>
+</head>
+<body>
+    <%= render 'header' %>
+    <form id="main">
+        <div>
+            <table id="quenmatkhau">
+                <tr>
+                    <td colspan="3">
+                        <h2>QUÊN MẬT KHẨU</h2>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nhập Email:</td>
+                    <td colspan="3">
+                        <input type="email" name="email" id="email" placeholder="Nhập email khôi phục">
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nhập mã:</td>
+                    <td>
+                        <input type="text" id="verification_code" placeholder="Nhập mã">
+                    </td>
+                    <td>
+                        <button type="button" id="gui">Gửi mã</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <button type="submit" id="nhan">Lấy lại mật khẩu</button>
+                    </td>
+                </tr>
+                <tr id="quaylaidangnhap">
+                    <td colspan="3">
+                        <a href="/">Quay lại trang đăng nhập</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+
+    <script>
+        // Gửi mã xác nhận
+        document.getElementById('gui').addEventListener('click', function() {
+            const email = document.getElementById('email').value;
+            if (email) {
+                fetch('/send_verification_code', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify({ email: email })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            } else {
+                alert('Vui lòng nhập email hợp lệ!');
+            }
+        });
+
+        // Xác nhận mã và lấy lại mật khẩu
+        document.getElementById('main').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const email = document.getElementById('email').value;
+            const code = document.getElementById('verification_code').value;
+
+            fetch('/verify_code', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({ email: email, code: code })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Mã xác thực đúng! Bạn có thể thay đổi mật khẩu.');
+                    window.location.href = '/laylaimatkhau'; // Điều hướng đến trang đặt lại mật khẩu
+                } else {
+                    alert('Mã xác thực không đúng.');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+
+        ///// điếm ngược 
+        const button = document.getElementById('gui');
+        let countdownInterval;
+
+        button.addEventListener('click', function() {
+            button.disabled = true; // Vô hiệu hóa nút khi nhấn
+            let timeLeft = 20; // Thời gian đếm ngược
+
+            button.textContent = `Gửi mã (${timeLeft})`; // Hiển thị thời gian trên nút
+
+            countdownInterval = setInterval(function() {
+                timeLeft--; // Giảm thời gian còn lại
+
+                button.textContent = `Gửi mã (${timeLeft})`; // Cập nhật hiển thị thời gian trên nút
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdownInterval); // Dừng đếm ngược
+                    button.disabled = false; // Kích hoạt lại nút
+                    button.textContent = 'Gửi mã'; // Đặt lại nội dung nút
+                }
+            }, 1000); // Cập nhật mỗi giây
+        });
+    </script>
+</body>
+</html>

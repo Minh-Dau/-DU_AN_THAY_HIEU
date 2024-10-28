@@ -1,0 +1,31 @@
+{
+    "nguoidung": {
+      "userId1": {
+        "id": "1",
+        "tai_khoan": "exampleAccount",
+        "sdt": "1234567890",
+        "email": "example@example.com",
+        "mat_khau": "hashedPassword123",
+        "dia_chi": "123 Main St",
+        "anh_dai_dien": "link_to_image",
+        "key_ma_hoa": "encryptionKey123",
+        "ngay_tao": "2024-10-07T12:00:00Z",
+        "trang_thai": true,
+        "ngay_cap_nhat": "2024-10-07T12:00:00Z"
+      },
+      "userId2": {
+        "id": "2",
+        "tai_khoan": "anotherAccount",
+        "sdt": "0987654321",
+        "email": "another@example.com",
+        "mat_khau": "hashedPassword456",
+        "dia_chi": null,
+        "anh_dai_dien": null,
+        "key_ma_hoa": null,
+        "ngay_tao": "2024-10-07T12:05:00Z",
+        "trang_thai": true,
+        "ngay_cap_nhat": "2024-10-07T12:05:00Z"
+      }
+    }
+  }
+  
