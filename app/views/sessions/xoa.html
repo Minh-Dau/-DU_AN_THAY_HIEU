@@ -4,143 +4,578 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-</head>
-<style>
-    /* Nút chat */
-.chat-widget {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-}
+    <style>
+        /*header*/
+        /* Reset mặc định và font */
+    * {
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    body {
+      background-color: #f4f4f4;
+    }
 
-.chat-icon {
-    background-color: #ff5722;
-    padding: 10px;
-    border-radius: 50px;
-    cursor: pointer;
-    position: relative;
-}
+    /* Header */
+    header { 
+    background-color: #fff;
+    padding: 15px 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    z-index: 1000; 
+    }
 
-.chat-icon img {
-    width: 40px;
-    height: 40px;
-}
+    #header_trangchinh {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      
+    }
+    /* Logo */
+    .logo img {
+      width: 100px;
+      height: auto;
+    }
 
-.chat-notification {
-    background-color: red;
-    color: white;
-    border-radius: 50%;
-    padding: 3px 7px;
-    position: absolute;
-    top: -10px;
-    right: -10px;
-    font-size: 12px;
-}
+    /* Tìm kiếm */
+    .search-wrapper {
+      position: relative;
+      width: 700px;
+    }
 
-/* Cửa sổ chat */
-.chat-box {
-    width: 300px;
-    height: 400px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    position: fixed;
-    bottom: 70px;
-    right: 20px;
-    display: flex;
-    flex-direction: column;
-}
+    .search-input {
+      width: 100%;
+      padding: 12px 50px 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 25px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
 
-.chat-header {
-    background-color: #ff5722;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 10px 10px 0 0;
-}
+    .search-input:focus {
+      border-color: #afabab;
+    }
 
-.chat-content {
-    flex-grow: 1;
-    padding: 10px;
-    overflow-y: auto;
-    border-top: 1px solid #ddd;
-    border-bottom: 1px solid #ddd;
-}
+    .search-wrapper img {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
 
-.chat-input {
-    display: flex;
-    padding: 10px;
-}
+    /* Giỏ hàng */
+    #giohang img {
+      width: 35px;
+      height: auto;
+      cursor: pointer;
+    }
 
-.chat-input input {
-    flex-grow: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-right: 10px;
-}
+    #giohang {
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
 
-.chat-input button {
-    padding: 8px 15px;
-    background-color: #ff5722;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    #khachhang {
+      display: flex;
+      align-items: center;
+      position: relative; 
+    }
 
-.hidden {
-    display: none;
-}
+    #khachhang img {
+      width: 35px;
+      height: auto;
+      cursor: pointer;
+    }
 
+    #giohang::after {
+      content: "10";
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background-color: #ff6f61;
+      color: white;
+      width: 18px;
+      height: 18px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      font-size: 12px;
+    }
+
+    .tooltip {
+      display: none;
+      position: absolute;
+      top: 100%; 
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      padding: 10px;
+      z-index: 1;
+    }
+
+    #khachhang:hover .tooltip {
+      display: block; 
+    }
+
+    .tooltip a {
+      display: block;
+      padding: 5px 10px;
+      text-decoration: none;
+      color: #333;
+      width: 120px;
+      transition: background-color 0.3s;
+    }
+
+    .tooltip a:hover {
+      background-color: #f0f0f0; 
+    }
+    .ten_user{
+         font-size: 15px;
+    }
+    /* body*/
+    #main{
+        display:flex;
+        justify-content:right;
+        margin-right:10%;
+    }
+    #container_giohang{
+        width: 100%;
+        padding: 20px;
+        max-width: 50%;
+    }
+    #container_giohang b{
+        font-size: 30px;
+        color: rgb(38, 65, 55);
+    }
+    table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table th, table td{
+        padding: 15px;
+        text-align: center;
+        border-bottom:1px solid #ddd ;
+    }
+    table th{
+        background-color: rgb(226, 226, 226);
+        font-weight: bold;
+    }
+    #anh_san_pham{
+        width: 100px;
+        height: auto;
+    }
+    .them_san_pham{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .them_san_pham button{
+        background-color: black;
+        color: #ddd;
+        border: none;
+        padding: 3px 10px;
+    }
+    .them_san_pham button:hover{
+        background-color: rgb(46, 46, 46);
+    }
+    .them_san_pham input{
+        width: 20px;
+        text-align: center;
+    }
+    .them_san_pham img{
+        width: 40px;
+        text-align: center;
+        border: 1px black solid;
+    }
+    .xoa_san_pham{
+        background-color: white;
+        border: none;
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out;
+    }
+    .xoa_san_pham:hover{
+       transform: scale(1.5);
+       background-color: rgb(207, 168, 168);
+    }
+     tbody td{
+       border: 1px rgb(207, 207, 207) solid;
+       margin-top: 10px;
+    }
+    #khoang_trang{
+        border: none;
+    }
+    /* Tổng tiền hàng*/
+    #tong_gio_hang{
+        border: 1px rgb(189, 189, 189) solid;
+        width: 20%;
+        background-color: #eeeded;
+        margin-top: 3%;
+        border-radius: 10px;
+        max-height: 280px;
+    }
+    .infomation{
+        display: flex;
+        justify-content: space-between;
+
+    }
+    #tong_gio_hang div p{
+        padding: 20px;
+        margin: 0;
+    }
+    .nhan_mua{
+        display: flex;
+        justify-content: center;
+    }
+    .nhan_mua input{
+        border: none;
+        background-color: #888383;
+        height: 30px;
+        border-radius: 10px;
+        width: 100%;
+    }
+    .nhan_mua input:hover{
+        transition: all 0.4s;
+        background-color: rgb(255, 56, 56);
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+    }
+
+    /* footer*/
+    #thanhngang{
+        padding: 2px;
+        background-color: rgb(112, 245, 72);
+        width: 100%;
+        margin: 0;
+    }
+    footer{
+        margin-top:20%;
+    }
+    #footer_interface{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+        
+    }
+    #full{
+        background-color: rgb(55, 232, 245);
+    }
+    #banquyen{
+        background-color: rgb(56, 56, 238);
+        color: rgb(226, 227, 228);
+        display: flex;
+        justify-content: center;
+        padding: 0;
+    }
+    #banquyen h3{
+        margin: 0;
+    }
+    .the{
+        text-decoration: none;
+        padding: 10px;
+        color: black;
+    }
+    #fb{
+        background-color: rgb(0, 110, 255);
+        border-color: rgb(0, 110, 255);
+        color: aliceblue;
+    }
+    #yt{
+        background-color: red;
+        color: white;
+        border-color: red;
+    }
+    .the {
+    text-decoration: none;
+    color: rgb(24, 16, 16);
+    transition: all 0.3s ease; 
+    }
+    .the:hover {
+        color: rgb(124, 123, 123);
+        text-decoration: underline; 
+        transform: scale(1.1); 
+    }
 </style>
+</head>
+<header>
+    <div id="header_trangchinh">
+      <div class="logo">
+        <img src="anh do an/Logo_Trường_Đại_học_Sư_phạm_Kỹ_thuật_Vĩnh_Long.png" alt="Logo" id="logo">
+      </div>
+      <div class="search-wrapper">
+        <input type="text" class="search-input" placeholder="Tìm Kiếm">
+        <img src="anh do an/magnifying-glass.png" alt="Search Icon">
+      </div>
+      <div id="giohang">
+        <img src="anh do an\shopping-cart.png" alt="" id="anh_giohang">
+      </div>
+      <div id="khachhang">
+        <img src="anh do an/avatar.png" alt="" id="anh_khachhang">
+        <div class="tooltip">
+            <a href="#orders">Đơn Mua</a>
+            <a href="">Đăng Xuất</a>
+            <a href="login">Đăng Nhập</a>
+            <a href="#register">Đăng Ký</a>
+        </div>
+          <h1 class="ten_user"> </h1>
+        </div>
+      </div>
+    </div>
+  </header>
 <body>
-    <div class="chat-widget">
-        <div id="chat-icon" class="chat-icon">
-            <img src="chat-icon.png" alt="Chat Icon">
-            <span class="chat-notification">5</span> <!-- Thông báo số tin nhắn -->
-        </div>
-    
-        <div id="chat-box" class="chat-box hidden">
-            <div class="chat-header">
-                <span>Admin</span>
-                <button id="close-chat" class="close-chat">&times;</button>
-            </div>
-            <div class="chat-content" id="chat-content">
-                <!-- Nội dung chat -->
-                <p><strong>Admin:</strong> Xin chào, tôi có thể giúp gì cho bạn?</p>
-            </div>
-            <div class="chat-input">
-                <input type="text" id="chat-message" placeholder="Nhập nội dung tin nhắn">
-                <button id="send-message">Gửi</button>
-            </div>
-        </div>
+    <div class="menu-btn" id="menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
     </div>
     
+    <section>
+        <div id="main">
+            <div id="container_giohang">
+                <b>GIỎ HÀNG CỦA BẠN</b>
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Ảnh sản phẩm</th>
+                            <th> Tên sản phẩm</th>
+                            <th> Size</th>
+                            <th> Số lượng</th>
+                            <th>Giá</th>
+                            <th>Thao tác</th>
+                            <th>Chọn</th>
+                        </tr>
+                    </thead>
+                    <tr id="khoang_trang">
+                        <td colspan="7"> </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td> <img src="d:\HINH ANH\ART\destined-one-black-3840x2160-17899.jpeg" alt="" id="anh_san_pham"></td>
+                            <td> Thức ăn cho</td>
+                            <td> M</td>
+                            <td>
+                                <div class="them_san_pham">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>100.000đ</td>
+                            <td> 
+                                <button class="xoa_san_pham">X</button>
+                            </td>
+                            <td> <input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                    <tr id="khoang_trang">
+                        <td colspan="7"> </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td> <img src="d:\HINH ANH\ART\destined-one-black-3840x2160-17899.jpeg" alt="" id="anh_san_pham"></td>
+                            <td> Thức ăn cho</td>
+                            <td> M</td>
+                            <td>
+                                <div class="them_san_pham">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>100.000đ</td>
+                            <td> 
+                                <button class="xoa_san_pham">X</button>
+                            </td>
+                            <td> <input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                    <tr id="khoang_trang">
+                        <td colspan="7"> </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td> <img src="d:\HINH ANH\ART\destined-one-black-3840x2160-17899.jpeg" alt="" id="anh_san_pham"></td>
+                            <td> Thức ăn cho</td>
+                            <td> M</td>
+                            <td>
+                                <div class="them_san_pham">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>100.000đ</td>
+                            <td> 
+                                <button class="xoa_san_pham">X</button>
+                            </td>
+                            <td> <input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                    <tr id="khoang_trang">
+                        <td colspan="7"> </td>
+                    </tr>
+                    <tbody>
+                        <tr>
+                            <td> <img src="d:\HINH ANH\ART\destined-one-black-3840x2160-17899.jpeg" alt="" id="anh_san_pham"></td>
+                            <td> Thức ăn cho</td>
+                            <td> M</td>
+                            <td>
+                                <div class="them_san_pham">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>100.000đ</td>
+                            <td> 
+                                <button class="xoa_san_pham">X</button>
+                            </td>
+                            <td> <input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td> <img src="d:\HINH ANH\ART\destined-one-black-3840x2160-17899.jpeg" alt="" id="anh_san_pham"></td>
+                            <td> Thức ăn cho</td>
+                            <td> M</td>
+                            <td>
+                                <div class="them_san_pham">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>100.000đ</td>
+                            <td> 
+                                <button class="xoa_san_pham">X</button>
+                            </td>
+                            <td> <input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td> <img src="d:\HINH ANH\ART\destined-one-black-3840x2160-17899.jpeg" alt="" id="anh_san_pham"></td>
+                            <td> Thức ăn cho</td>
+                            <td> M</td>
+                            <td>
+                                <div class="them_san_pham">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>100.000đ</td>
+                            <td> 
+                                <button class="xoa_san_pham">X</button>
+                            </td>
+                            <td> <input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                    <tbody>
+                        <tr>
+                            <td> <img src="d:\HINH ANH\ART\destined-one-black-3840x2160-17899.jpeg" alt="" id="anh_san_pham"></td>
+                            <td> Thức ăn cho</td>
+                            <td> M</td>
+                            <td>
+                                <div class="them_san_pham">
+                                    <button>-</button>
+                                    <input type="text" value="2">
+                                    <button>+</button>
+                                </div>
+                            </td>
+                            <td>100.000đ</td>
+                            <td> 
+                                <button class="xoa_san_pham">X</button>
+                            </td>
+                            <td> <input type="checkbox"></td>
+                        </tr>
+                    </tbody>
+                    
+                </table>
+            </div>
+            <div id="tong_gio_hang">
+                <div class="infomation">
+                    <h2>Tổng tiền giỏ hàng</h2>
+                </div>
+                <div class="infomation">
+                    <p> Tổng sản phẩm</p>
+                    <p>1</p>
+                </div>
+                <div class="infomation">
+                    <p>Tổng tiền hàng</p>
+                    <p>100.000đ</p>
+                </div>
+                <div class="infomation">
+                    <p>Thành tiền</p>
+                    <p>100.000đ</p>
+                </div>
+                <div class="nhan_mua">
+                    <input type="submit" value="Mua hàng">
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
+<footer>
+    <div>
+        <hr id="thanhngang">
+        <div id="full">
+            <div  id="footer_interface">
+                <div id="sanpham">
+                    <h3>SẢN PHẨM</h3>
+                    <p><a href="" class="the">Thức ăn cho bò</a></p>
+                    <p><a href="" class="the">Thức ăn cho lợn</a></p>
+                    <p><a href="" class="the">Thức ăn cho dê</a></p>
+                    <p><a href="" class="the">Thức ăn cho thỏ</a></p>
+                    <p><a href="" class="the">Thức ăn cho cừu</a></p>
+                </div>
+                <div>
+                    <h3>ĐỊA CHỈ</h3>
+                    <p>Vĩnh Long: Số 73, Nguyễn Huệ, Phường 2, Tp. Vĩnh Long</p>
+                    <p>Cần Thơ: Số 73, Nguyễn Huệ, Phường 2, Tp. Vĩnh Long</p>
+                    <p>Đồng Tháp: Số 73, Nguyễn Huệ, Phường 2, Tp. Vĩnh Long</p>
+                </div>
+                <div>
+                    <h3>LIÊN HỆ</h3>
+                    <p>Email: thucangiasuc@gmail.com</p>
+                    <p>Facebook: thức ăn gia súc</p>
+                    <p>Phone: 0987654321</p>
+                    <div>
+                        <input type="button" value="Facebook" id="fb">
+                        <input type="button" value="Youtube" id="yt">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="banquyen">
+            <h3> Bản quyền thuộc về CÔNG TY THỨC ĂN GIA SÚC</h3>
+        </div>
+    </div>
+</footer>
 </html>
 <script>
-    document.getElementById("chat-icon").addEventListener("click", function() {
-    document.getElementById("chat-box").classList.toggle("hidden");
-});
+    const menuBtn = document.getElementById('menu-btn');
+    const sideMenu = document.getElementById('side-menu');
 
-document.getElementById("close-chat").addEventListener("click", function() {
-    document.getElementById("chat-box").classList.add("hidden");
-});
+    menuBtn.addEventListener('click', function () {
+        sideMenu.classList.toggle('open');
+    });
 
-document.getElementById("send-message").addEventListener("click", function() {
-    var message = document.getElementById("chat-message").value;
-    if (message.trim() !== "") {
-        var chatContent = document.getElementById("chat-content");
-        var newMessage = document.createElement("p");
-        newMessage.innerHTML = "<strong>Bạn:</strong> " + message;
-        chatContent.appendChild(newMessage);
-        document.getElementById("chat-message").value = "";
-        chatContent.scrollTop = chatContent.scrollHeight; // Cuộn xuống cuối cùng
-    }
-});
-
+    document.getElementById('close-btn').addEventListener('click', function () {
+        sideMenu.classList.remove('open');
+    });
 </script>

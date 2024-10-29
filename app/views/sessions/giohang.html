@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        display: flex;
+        justify-content: right;
+        margin-right: 10%;
+        margin-top: 5%;
+    }
+    #container_giohang{
+        margin-top: 7%;
+        width: 100%;
+        padding: 20px;
+        max-width: 50%;
+        max-height: 200px;
+    }
+    #container_giohang b{
+        font-size: 30px;
+        color: rgb(38, 65, 55);
+    }
+    table{
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table th, table td{
+        padding: 15px;
+        text-align: center;
+        border-bottom:1px solid #ddd ;
+    }
+    table th{
+        background-color: rgb(226, 226, 226);
+        font-weight: bold;
+    }
+    #anh_san_pham{
+        width: 100px;
+        height: auto;
+    }
+    .them_san_pham{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .them_san_pham button{
+        background-color: black;
+        color: #ddd;
+        border: none;
+        padding: 3px 10px;
+    }
+    .them_san_pham button:hover{
+        background-color: rgb(46, 46, 46);
+    }
+    .them_san_pham input{
+        width: 20px;
+        text-align: center;
+    }
+    .them_san_pham img{
+        width: 40px;
+        text-align: center;
+        border: 1px black solid;
+    }
+    .xoa_san_pham{
+        background-color: white;
+        border: none;
+        color: red;
+        font-size: 20px;
+        cursor: pointer;
+        transition: transform 0.5s ease-in-out;
+    }
+    .xoa_san_pham:hover{
+       transform: scale(1.5);
+       background-color: rgb(207, 168, 168);
+    }
+     tbody td{
+       border: 1px rgb(207, 207, 207) solid;
+       margin-top: 10px;
+    }
+    #khoang_trang{
+        border: none;
+    }
+    /* Tổng tiền hàng*/
+    #tong_gio_hang{
+        border: 1px rgb(189, 189, 189) solid;
+        width: 20%;
+        background-color: #eeeded;
+        margin-top: 10%;
+        border-radius: 10px;
+    }
+    .infomation{
+        display: flex;
+        justify-content: space-between;
+
+    }
+    #tong_gio_hang div p{
+        padding: 20px;
+        margin: 0;
+    }
+    .nhan_mua{
+        display: flex;
+        justify-content: center;
+    }
+    .nhan_mua input{
+        border: none;
+        background-color: #888383;
+        height: 30px;
+        border-radius: 10px;
+        width: 100%;
+    }
+    .nhan_mua input:hover{
+        transition: all 0.4s;
+        background-color: rgb(255, 56, 56);
+        color: rgb(255, 255, 255);
+        font-size: 20px;
+    }
+</style>
+<body>
+    <div id="container_giohang">
+        <div >
+            <b>GIỎ HÀNG CỦA BẠN</b>
+            <table>
+                <thead>
+                    <tr>
+                        <th> Ảnh sản phẩm</th>
+                        <th> Tên sản phẩm</th>
+                        <th> Size</th>
+                        <th> Số lượng</th>
+                        <th>Giá</th>
+                        <th>Thao tác</th>
+                        <th>Chọn</th>
+                    </tr>
+                </thead>
+                <tr id=" khoang_trang">
+                    <td colspan="7"> </td>
+                </tr>
+                <tbody>
+                    <tr>
+                        <td> <img src="d:\HINH ANH\ART\568035eb1c0382f222dd304577956d8b.jpg" alt="" id="anh_san_pham"></td>
+                        <td> Thức ăn cho</td>
+                        <td> M</td>
+                        <td>
+                            <div class="them_san_pham">
+                                <button>-</button>
+                                <input type="text" value="2">
+                                <button>+</button>
+                            </div>
+                        </td>
+                        <td>100.000đ</td>
+                        <td> 
+                            <button class="xoa_san_pham">X</button>
+                        </td>
+                        <td> <input type="checkbox"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="tong_gio_hang">
+        <div class="infomation">
+            <h2>Tổng tiền giỏ hàng</h2>
+        </div>
+        <div class="infomation">
+            <p> Tổng sản phẩm</p>
+            <p>1</p>
+        </div>
+        <div class="infomation">
+            <p>Tổng tiền hàng</p>
+            <p>100.000đ</p>
+        </div>
+        <div class="infomation">
+            <p>Thành tiền</p>
+            <p>100.000đ</p>
+        </div>
+        <div class="nhan_mua">
+            <input type="submit" value="Mua hàng">
+        </div>
+    </div>
+</body>
+</html>

@@ -61,11 +61,4 @@ class FirebaseService
     end
     nil
   end
-  def create_user(data)
-    # Băm mật khẩu trước khi lưu
-    data[:mat_khau] = BCrypt::Password.create(data[:mat_khau])
-    path = "nguoidung/#{data[:id]}"
-    response = @firebase.set(path, data)
-    response
-  end
 end

@@ -15,7 +15,7 @@
             right: 0;
             z-index: 1000;
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             padding: 10px 20px;
             background-color: rgb(207, 249, 184);
@@ -30,18 +30,15 @@
         }
         #menu-container {
             display: flex;
-            justify-content:center;
-            margin-right: 5%;
-            flex: 1;
+            justify-content: center;
+            
         }
-
         #menu {
             display: flex;
             gap: 50px;
             flex-wrap: nowrap;
-            justify-content: center;
+            
         }
-
         #menu a {
             text-decoration: none;
             color: black;
@@ -224,6 +221,17 @@
                 <a href="">Giới Thiệu</a>
                 <a href="">Liên Hệ</a>
             </div>
+        </div>
+        <%# xự kiện khi đăng nhập thành công hiển thị tên người dùng%>
+        <div id="dangnhap-container">
+        <img src="anh do an/avatar.png" alt="Login Icon" id="dangnhap-icon">
+            <% if session[:username] %>
+                <span id="dangnhap"><%= session[:username] %></span> 
+            <% else %>
+                <form action="/login" method="post">
+                    <a href="/login" id="dangnhap">Đăng Nhập</a>
+                </form>
+            <% end %>
         </div>
     </header>
     <form action="/trangchu">

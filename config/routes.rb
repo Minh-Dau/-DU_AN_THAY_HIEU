@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   get "quenmatkhau", to: "home#quenmatkhau", as: :password_recovery
   post "quenmatkhau", to: "home#quenmatkhau_submit"
 
+  get"giohang", to:"shoppingcart#giohang",as: 'giohang'
   
   #mailer
   post '/send_verification_code', to: 'password_resets#send_verification_code'
