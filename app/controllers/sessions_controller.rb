@@ -61,9 +61,8 @@ class SessionsController < ApplicationController
     end
   end
   def destroy
-    Rails.logger.debug("Logging out user ID: #{session[:user_id]}") # Debugging log
-    session[:user_id] = nil
-    redirect_to login_path, notice: 'Đã đăng xuất.'
+    session[:user_id] = nil 
+    redirect_to trangchu_path, notice: 'Bạn đã đăng xuất thành công.'
   end
 end
 

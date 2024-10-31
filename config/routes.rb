@@ -23,9 +23,9 @@ Rails.application.routes.draw do
   get"trangchu",to:"home#trangchu",as:"trangchu"
   # config/routes.rb
   get "show",to:"sessions#show",as: 'show'
-  delete 'logout', to: 'sessions#destroy', as: 'logout'
 
-  # Password recovery routes
+  get '/logout', to: 'sessions#destroy', as: 'logout'
+
   get "laylaimatkhau", to: "home#laylaimatkhau", as: :password_reset_request
   post "laylaimatkhau", to: "home#laylaimatkhau_submit"
 
