@@ -320,9 +320,34 @@
         flex-direction: column;
     }
 
-footer {
-    margin-top: auto; /* Pushes footer to the bottom */
-}
+    footer {
+        margin-top: auto; /* Pushes footer to the bottom */
+    }
+
+    #dangnhap-container{
+            display: flex;
+            justify-content: center;
+            position: relative; 
+            padding-right: 40px;   
+            
+        }
+        .tooltip{
+            display: none;
+            position: absolute;
+            z-index: 1000;
+        }
+        .tooltip a{
+            color: rgb(54, 54, 54);
+            margin:  5px 0;
+            transition: color 0.4s;
+        }
+        #dangnhap-container:hover .tooltip{
+            display: flex;
+            flex-direction:column;
+            background-color: #ccc;
+        }
+
+
 </style>
 </head>
 

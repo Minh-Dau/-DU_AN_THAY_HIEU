@@ -6,44 +6,148 @@
     <title>Document</title>
 </head>
 <style>
-    #menu{
-        background-color: #f0f0f0;
-        width: 100%;
+     header {
+           background-color: #fff;
+            padding: 15px 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            z-index: 1000; 
+            background-color: #c3fdbe;
+        }
+    #header_trangchu{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        gap: 40px;
+    
+    }
+    .logo img {
+        width: 100px;
+        height: auto;
+    }
+    #dangnhap-container {
+        display: flex;
+        align-items: center;
+        position: relative;
+        height: 50px; 
+    }
+    #dangnhap-container img {
+        width: 35px;
+        height: auto;
+        cursor: pointer;
+    }
+    #giohang::after {
+        content: "10";
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #ff6f61;
+        color: white;
+        width: 18px;
+        height: 18px;
         display: flex;
         justify-content: center;
-        margin-top: 100px;
+        align-items: center;
+        border-radius: 50%;
+        font-size: 12px;
     }
-    .menu{
+
+    .tooltip {
+        display: none;
+        position: absolute;
+        top: 100%; 
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        padding: 10px;
+        z-index: 1;
+    }
+
+    #dangnhap-container:hover .tooltip {
+        display: block; 
+    }
+
+    .tooltip a {
+        display: block;
+        padding: 5px 10px;
         text-decoration: none;
-        color: black;
+        color: #333;
+        width: 120px;
+        transition: background-color 0.3s;
+    }
+
+    .tooltip a:hover {
+        background-color: #f0f0f0; 
+    }
+    .ten_user{
         font-size: 18px;
-        display: inline-block;
-        padding: 0 30px;
+        padding:35px;
+        width:300px;
+        position:absolute;
+
     }
-    .menu:hover {
-        text-decoration: underline;
+    #menu-container {
+        display: flex;
+        justify-content: center;
+        
     }
+    #menu {
+        display: flex;
+        gap: 50px;
+        flex-wrap: nowrap;
+        
+    }
+    #menu a {
+        text-decoration: none;
+        color: rgb(54, 54, 54);
+        font-weight: bold;
+        font-size:20px;
+    }
+    @media (max-width: 400px) {
+        #menu {
+            flex-direction: column;
+        }
+    }
+    #dangnhap-icon{
+        position:relative;
+    }
+
 </style>
 <body>
-    <header> 
-        <div>
-        <table id="menu">
-            <tr>
-                <td>
-                    <a href="" class="menu">Trang Chủ</a>
-                </td>
-                <td>
-                    <a href=""class="menu">Sản Phẩm</a>
-                </td>
-                <td>
-                    <a href=""class="menu">Giới Thiệu</a>
-                </td>
-                <td>
-                    <a href=""class="menu">Liên Hệ</a>
-                </td>
-            </tr>
-        </table>
-    </div>
+     <header>
+        <div id="header_trangchu">
+            <div class="logo">
+                <img src="anh do an/Logo_Trường_Đại_học_Sư_phạm_Kỹ_thuật_Vĩnh_Long.png" alt="" id="logo">
+            </div>
+            <div id="menu-container">
+                <div id="menu">
+                    <a href="">Trang Chủ</a>
+                    <a href="trangchinh">Sản Phẩm</a>
+                    <a href="">Giới Thiệu</a>
+                    <a href="">Liên Hệ</a>
+                </div>
+            </div>
+            <div id="dangnhap-container">
+                <img src="anh do an/avatar.png" alt="Login Icon" id="dangnhap-icon">
+                <div class="tooltip">
+                    <a href="#orders">Đơn Mua</a>
+                    <a href="<%= logout_path %>">Đăng Xuất</a>
+                    <a href="login">Đăng Nhập</a>
+                    <a href="#register">Đăng Ký</a>
+                </div>
+                <% if @user %>
+                    <h1 class="ten_user"> <%= @user[:data]["username"] %></h1>
+                <% else %>
+                    <h1 class="error-message">Người dùng không tồn tại</h1>
+                <% end %>
+            </div>
+        </div>
     </header>
 
 </body>

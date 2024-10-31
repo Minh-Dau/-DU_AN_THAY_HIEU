@@ -8,60 +8,6 @@
         body{
             padding-top: 5%;
         }
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: rgb(207, 249, 184);
-        }
-        @media (max-width: 400px){
-            header{
-                display: none;
-            }
-        }
-        #logo {
-            height: 80px;
-        }
-        #menu-container {
-            display: flex;
-            justify-content: center;
-            
-        }
-        #menu {
-            display: flex;
-            gap: 50px;
-            flex-wrap: nowrap;
-            
-        }
-        #menu a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
-        @media (max-width: 400px) {
-            #menu {
-                flex-direction: column;
-            }
-        }
-        #dangnhap-container {
-            display: flex;
-            align-items: center;
-        }
-        #dangnhap-icon {
-            width: 20px;
-            height: 20px;
-        }
-        #dangnhap{
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
         #image-container {
             position: relative;
             width: 100%;
@@ -207,33 +153,11 @@
         #nghiencuu_left{
             text-align: justify
         }
+        
     </style>
 </head>
 <body>
-    <header>
-        <div>
-            <img src="anh do an/Logo_Trường_Đại_học_Sư_phạm_Kỹ_thuật_Vĩnh_Long.png" alt="" id="logo">
-        </div>
-        <div id="menu-container">
-            <div id="menu">
-                <a href="">Trang Chủ</a>
-                <a href="trangchinh">Sản Phẩm</a>
-                <a href="">Giới Thiệu</a>
-                <a href="">Liên Hệ</a>
-            </div>
-        </div>
-        <%# xự kiện khi đăng nhập thành công hiển thị tên người dùng%>
-        <div id="dangnhap-container">
-        <img src="anh do an/avatar.png" alt="Login Icon" id="dangnhap-icon">
-            <% if session[:username] %>
-                <span id="dangnhap"><%= session[:username] %></span> 
-            <% else %>
-                <form action="/login" method="post">
-                    <a href="/login" id="dangnhap">Đăng Nhập</a>
-                </form>
-            <% end %>
-        </div>
-    </header>
+   <%= render 'header'%>
     <form action="/trangchu">
         <div id="image-container">
             <img src="anh do an/anhnen1.jpg" alt="Animal Feed Image" id="anhnen">
