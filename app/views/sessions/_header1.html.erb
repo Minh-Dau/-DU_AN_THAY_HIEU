@@ -18,14 +18,14 @@
 
     /* Header */
     header { 
-    background-color: #fff;
-    padding: 15px 40px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    z-index: 1000; 
+      background-color: #fff;
+      padding: 15px 40px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      position: fixed; 
+      top: 0; 
+      left: 0; 
+      right: 0; 
+      z-index: 1000; 
     }
 
     #header_trangchinh {
@@ -163,15 +163,19 @@
         <img src="anh do an/avatar.png" alt="" id="anh_khachhang">
         <div class="tooltip">
             <a href="#orders">Đơn Mua</a>
+<<<<<<< HEAD
             <%= link_to "Đăng Xuất", login_path, method: :delete, data: { confirm: "Bạn có chắc chắn muốn đăng xuất?" } %>
+=======
+            <a href="<%= logout_path %>">Đăng Xuất</a>
+>>>>>>> dd66830cd38e16dd0dc402f6bbebaedc9d10808d
             <a href="login">Đăng Nhập</a>
             <a href="#register">Đăng Ký</a>
         </div>
           <% if @user %>
           <h1 class="ten_user"> <%= @user[:data]["username"] %></h1>
-        <% else %>
-          <h1 class="error-message">Người dùng không tồn tại</h1>
-        <% end %>
+          <% else %>
+            <h1 class="error-message">Người dùng không tồn tại</h1>
+          <% end %>
         </div>
       </div>
     </div>
