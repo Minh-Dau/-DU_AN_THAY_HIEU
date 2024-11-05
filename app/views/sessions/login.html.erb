@@ -125,7 +125,7 @@
                         <td colspan="2"> Quên mật khẩu? Nhấn vào <a href="<%= quenmatkhau_path %>">đây</a></td>
                     </tr>
                     <tr>
-                        <td colspan="2"> <button type="submit" id="nhan">Đăng Nhập</button></td>
+                            <td colspan="2"> <button type="submit" id="nhan">Đăng Nhập</button></td>
                     </tr>
                     <tr>
                         <td colspan="2" class="dangnhapgg"> Hoặc đăng nhập bằng</td>
@@ -154,39 +154,62 @@
 </script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    // Listen for form submission using remote AJAX
+      // Listen for form submission using remote AJAX
     document.addEventListener('submit', function (event) {
-        event.preventDefault(); // Prevent default form submission
+    event.preventDefault(); // Ngăn chặn việc gửi form mặc định
 
-        const form = event.target;
-        const formData = new FormData(form);
+    const form = event.target;
+    const formData = new FormData(form);
 
-        fetch(form.action, {
+    // Hiển thị thông báo đang xử lý
+        Swal.fire({
+            title: "Đang xử lý...",
+            text: "Vui lòng chờ...",
+            icon: "info",
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            timerProgressBar: true
+        });
+        
+    fetch(form.action, {
         method: 'POST',
         body: formData,
         headers: { 'X-Requested-With': 'XMLHttpRequest' }
-        })
-        .then(response => response.json())
-        .then(data => {
+    })
+    .then(response => response.json())
+    .then(data => {
         if (data.success) {
             Swal.fire({
-            title: "Good job!",
-            text: data.message,
-            icon: "success"
+                title: "Good job!",
+                text: data.message,
+                icon: "success"
             }).then(() => {
-            window.location.href = "<%= trangchinh_path %>";
+                // Chuyển hướng dựa vào quyền của người dùng
+                switch (data.role) { // Đảm bảo sử dụng 'data.role'
+                    case "admin":
+                        window.location.href = "<%= trangquanly_path %>";
+                        break;
+                    case "user":
+                        window.location.href = "<%= trangchinh_path %>";
+                        break;
+                    default:
+                        window.location.href = "<%= trangchu_path %>";
+                }
+                // Hiển thị alert với vai trò người dùng
+                //alert("Vai trò người dùng: " + data.role);
             });
         } else {
             Swal.fire({
-            title: "Oops...",
-            text: data.message,
-            icon: "error"
+                title: "Oops...",
+                text: data.message,
+                icon: "error"
             });
         }
-        })
-        .catch(error => {
+    })
+    .catch(error => {
         console.error('Error:', error);
-        });
     });
+});
+
 </script>
 

@@ -57,8 +57,15 @@ class FirebaseService
     Rails.logger.debug("Response for user_id #{user_id}: #{response.inspect}") # Debugging
   
     if response.success?
-      return { id: user_id, data: response.body }
+      user_data = response.body # Lấy dữ liệu người dùng
+  
+      # Kiểm tra xem dữ liệu có chứa trường role không
+      unless user_data["role"]
+        Rails.logger.warn("User #{user_id} does not have a role.")
+      end
+  
+      return { id: user_id, data: user_data } # Giả định user_data là hash
     end
     nil
-  end
+  end  
 end

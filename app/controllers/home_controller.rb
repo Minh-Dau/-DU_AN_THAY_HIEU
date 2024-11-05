@@ -20,18 +20,20 @@ class HomeController < ApplicationController
     end
     
     user_data = {
-      id: SecureRandom.uuid,
+      id: (SecureRandom.random_number(90_000_000) + 10_000_000).to_s,
       username: params[:username],
       sodienthoai: params[:sodienthoai],
-      email: email,
-      password: params[:password],
+      email: params[:email],
+      mat_khau: BCrypt::Password.create(params[:password]),
       dia_chi: params[:dia_chi] || "123 Main St",
       anh_dai_dien: params[:anh_dai_dien] || "link_to_image",
       key_ma_hoa: "encryptionKey123",
       ngay_tao: Time.now.utc.iso8601,
       trang_thai: true,
-      ngay_cap_nhat: Time.now.utc.iso8601
+      ngay_cap_nhat: Time.now.utc.iso8601,
+      role: params[:role] || "user"
     }
+
 
     begin
       result = firebase_service.create_user(user_data)
