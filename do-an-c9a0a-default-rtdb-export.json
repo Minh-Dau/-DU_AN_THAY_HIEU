@@ -1,0 +1,94 @@
+{
+  "nguoidung": {
+    "15734950": {
+      "anh_dai_dien": "link_to_image",
+      "dia_chi": "123 Main St",
+      "email": "nhau8179@gmail.com",
+      "id": "15734950",
+      "key_ma_hoa": "encryptionKey123",
+      "mat_khau": "$2a$12$z0HyDSOzzXCqjUZaZ6j.v.zkm78WgMU0b3FOzJcxpdu1uNlh/XU4C",
+      "ngay_cap_nhat": "2024-11-03T04:13:42Z",
+      "ngay_tao": "2024-11-03T04:13:42Z",
+      "role": "user",
+      "sodienthoai": "1234",
+      "trang_thai": true,
+      "username": "NH"
+    },
+    "54790640": {
+      "anh_dai_dien": "link_to_image",
+      "dia_chi": "123 Main St",
+      "email": "sebastianwilliams894sgm493346zl@outlook.com",
+      "id": "54790640",
+      "key_ma_hoa": "encryptionKey123",
+      "mat_khau": "$2a$12$VynP0QAxJRki8yD9CS/nCeqGy7bept6ij.8CC4ZkA.p8YWRUvani.",
+      "ngay_cap_nhat": "2024-10-30T13:38:20Z",
+      "ngay_tao": "2024-10-30T13:38:20Z",
+      "role": "user",
+      "sodienthoai": "1231231231",
+      "trang_thai": true,
+      "username": "21004136@st.vlute.edu.vn"
+    },
+    "94030108": {
+      "anh_dai_dien": "link_to_image",
+      "dia_chi": "123 Main St",
+      "email": "nguyenconghau230503@gmail.com",
+      "id": "94030108",
+      "key_ma_hoa": "encryptionKey123",
+      "mat_khau": "$2a$12$kcjROjSjCR4zCJTahjoZcO2/Q61rNj9OnqRrvS.QHsEy/MQdySoTG",
+      "ngay_cap_nhat": "2024-11-03T08:35:38Z",
+      "ngay_tao": "2024-11-03T08:35:38Z",
+      "role": "admin",
+      "sodienthoai": "1231231231",
+      "trang_thai": true,
+      "username": "21004136@st.vlute.edu.vn"
+    },
+    "5a8e7ae6-a7c1-4b1c-bb54-53a133dddf70": {
+      "anh_dai_dien": "https://storage.googleapis.com/do-an-c9a0a.appspot.com/profile_images/RackMultipart20241104-10516-74at5e.png",
+      "dia_chi": "Ấp hiếu thọ, xã hiếu thành, huyện Vũng Liêm, tỉnh Vĩnh Long",
+      "email": "21004125@st.vlute.edu.vn",
+      "id": "5a8e7ae6-a7c1-4b1c-bb54-53a133dddf70",
+      "key_ma_hoa": "encryptionKey123",
+      "ngay_cap_nhat": "2024-11-04 23:01:50",
+      "ngay_tao": "2024-11-04T15:45:55Z",
+      "password": "12345",
+      "sodienthoai": "34234234",
+      "trang_thai": true,
+      "username": "Trần Minh Hậu"
+    },
+    "c1bc26a0-5aa0-4158-9c29-7fb1089dd2f2": {
+      "dia_chi": "Ấp hiếu thọ, xã hiếu thành, huyện Vũng Liêm, tỉnh Vĩnh Long",
+      "email": "tranminhdau85@gmail.com",
+      "id": "c1bc26a0-5aa0-4158-9c29-7fb1089dd2f2",
+      "key_ma_hoa": "encryptionKey123",
+      "ngay_cap_nhat": "2024-11-04 22:43:24",
+      "ngay_tao": "2024-11-04T15:02:55Z",
+      "password": "12345",
+      "sodienthoai": "44444",
+      "trang_thai": true,
+      "username": "Trần Minh Đấu"
+    },
+    "userId1": {
+      "anh_dai_dien": "link_to_image",
+      "dia_chi": "123 Main St",
+      "email": "example@example.com",
+      "id": "1",
+      "key_ma_hoa": "encryptionKey123",
+      "mat_khau": "hashedPassword123",
+      "ngay_cap_nhat": "2024-10-07T12:00:00Z",
+      "ngay_tao": "2024-10-07T12:00:00Z",
+      "sdt": "1234567890",
+      "tai_khoan": "exampleAccount",
+      "trang_thai": true
+    },
+    "userId2": {
+      "email": "another@example.com",
+      "id": "2",
+      "mat_khau": "hashedPassword456",
+      "ngay_cap_nhat": "2024-10-07T12:05:00Z",
+      "ngay_tao": "2024-10-07T12:05:00Z",
+      "sdt": "0987654321",
+      "tai_khoan": "anotherAccount",
+      "trang_thai": true
+    }
+  }
+}

@@ -141,6 +141,7 @@ form .inputField > div input{
                             <th>Age</th>
                             <th>City</th>
                             <th>Email</th>
+                            <th>Password</th>
                             <th>Phone</th>
                             <th>Post</th>
                             <th>Start Date</th>
@@ -176,13 +177,13 @@ form .inputField > div input{
                                 <input type="file" name="" id="imgInput">
                                 <i class="bi bi-plus-circle-dotted"></i>
                             </label>
-                            <img src="./image/Profile Icon.webp" alt="" width="200" height="200" class="img">
+                            <img src="link_to_image" alt="Profile Image" width="200" height="200" class="img">
                         </div>
 
                         <div class="inputField">
                             <div>
                                 <label for="name">Name:</label>
-                                <input type="text" name="" id="name" required>
+                                <input type="text" name="" id="name" value="NH" required>
                             </div>
                             <div>
                                 <label for="age">Age:</label>
@@ -190,25 +191,34 @@ form .inputField > div input{
                             </div>
                             <div>
                                 <label for="city">City:</label>
-                                <input type="text" name="" id="city" required>
+                                <input type="text" name="" id="city" value="123 Main St" required>
                             </div>
                             <div>
                                 <label for="email">E-mail:</label>
-                                <input type="email" name="" id="email" required>
+                                <input type="email" name="" id="email" value="nhau8179@gmail.com" required>
+                            </div>
+                            <div>
+                                <label for="pass">Password:</label>
+                                <input type="password" name="" id="pass" required>
+                            </div>
+                            <div>
+                                <label for="trang_thai">Trạng thái:</label>
+                                <input type="checkbox" id="trang_thai" name="trang_thai" value="1">
                             </div>
                             <div>
                                 <label for="phone">Number:</label>
-                                <input type="text" name="" id="phone" minlength="11" maxlength="11" required>
+                                <input type="text" name="" id="phone" minlength="11" maxlength="11" value="1234" required>
                             </div>
                             <div>
                                 <label for="post">Post:</label>
                                 <input type="text" name="" id="post" required>
                             </div>
                             <div>
-                                <label for="sDate">Start Date:</label>
-                                <input type="date" name="" id="sDate" required>
+                                <label for="sDate">date of birth:</label>
+                                <input type="date" name="" id="sDate" value="2024-11-03" required>
                             </div>
                         </div>
+
 
                     </form>
                 </div>
@@ -221,7 +231,7 @@ form .inputField > div input{
         </div>
     </div>
 
-    <!--Read Data Modal-->
+    <!-- Modal Hiển Thị Dữ Liệu -->
     <div class="modal fade" id="readData">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
@@ -265,7 +275,7 @@ form .inputField > div input{
                                 <input type="text" name="" id="showPost" disabled>
                             </div>
                             <div>
-                                <label for="sDate">Start Date:</label>
+                                <label for="sDate">date of birth:</label>
                                 <input type="date" name="" id="showsDate" disabled>
                             </div>
                         </div>
@@ -281,21 +291,36 @@ form .inputField > div input{
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
     <script>
-        var form = document.getElementById("myForm"),
-    imgInput = document.querySelector(".img"),
-    file = document.getElementById("imgInput"),
-    userName = document.getElementById("name"),
-    age = document.getElementById("age"),
-    city = document.getElementById("city"),
-    email = document.getElementById("email"),
-    phone = document.getElementById("phone"),
-    post = document.getElementById("post"),
-    sDate = document.getElementById("sDate"),
-    submitBtn = document.querySelector(".submit"),
-    userInfo = document.getElementById("data"),
-    modal = document.getElementById("userForm"),
-    modalTitle = document.querySelector("#userForm .modal-title"),
-    newUserBtn = document.querySelector(".newUser")
+   // Lấy đối tượng form từ DOM bằng ID
+    var form = document.getElementById("myForm"),
+    // Lấy input hình ảnh từ DOM bằng class
+        imgInput = document.querySelector(".img"),
+    // Lấy input file hình ảnh từ DOM bằng ID
+        file = document.getElementById("imgInput"),
+    // Lấy input tên người dùng từ DOM bằng ID
+        userName = document.getElementById("name"),
+    // Lấy input tuổi từ DOM bằng ID
+        age = document.getElementById("age"),
+    // Lấy input thành phố từ DOM bằng ID
+        city = document.getElementById("city"),
+    // Lấy input email từ DOM bằng ID
+        email = document.getElementById("email"),
+    // Lấy input số điện thoại từ DOM bằng ID
+        phone = document.getElementById("phone"),
+    // Lấy input bài viết từ DOM bằng ID
+        post = document.getElementById("post"),
+    // Lấy input ngày từ DOM bằng ID
+        sDate = document.getElementById("sDate"),
+    // Lấy nút gửi từ DOM bằng class
+        submitBtn = document.querySelector(".submit"),
+    // Lấy phần tử hiển thị thông tin người dùng từ DOM bằng ID
+        userInfo = document.getElementById("data"),
+    // Lấy modal chứa form người dùng từ DOM bằng ID
+        modal = document.getElementById("userForm"),
+    // Lấy tiêu đề modal từ DOM
+        modalTitle = document.querySelector("#userForm .modal-title"),
+    // Lấy nút tạo người dùng mới từ DOM bằng class
+        newUserBtn = document.querySelector(".newUser");
 
 
 let getData = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getItem('userProfile')) : []
@@ -303,137 +328,185 @@ let getData = localStorage.getItem('userProfile') ? JSON.parse(localStorage.getI
 let isEdit = false, editId
 showInfo()
 
-newUserBtn.addEventListener('click', ()=> {
-    submitBtn.innerText = 'Submit',
+newUserBtn.addEventListener('click', () => {
+    // Đặt văn bản nút gửi thành 'Submit'
+    submitBtn.innerText = 'Submit'
+    // Đặt tiêu đề modal thành "Điền vào biểu mẫu"
     modalTitle.innerText = "Fill the Form"
+    // Đặt trạng thái chỉnh sửa thành false (không phải đang chỉnh sửa)
     isEdit = false
+    // Đặt ảnh đại diện mặc định
     imgInput.src = "./image/Profile Icon.webp"
+    // Đặt lại biểu mẫu về trạng thái ban đầu
     form.reset()
 })
 
 
-file.onchange = function(){
-    if(file.files[0].size < 1000000){  // 1MB = 1000000
+file.onchange = function() {
+    // Kiểm tra kích thước tệp có nhỏ hơn 1MB (1MB = 1000000 bytes)
+    if (file.files[0].size < 1000000) {
+        // Tạo một FileReader mới
         var fileReader = new FileReader();
-
-        fileReader.onload = function(e){
+        // Khi tệp được tải lên, thực hiện hàm này
+        fileReader.onload = function(e) {
+            // Lưu URL của ảnh vào biến imgUrl
             imgUrl = e.target.result
+            
+            // Cập nhật nguồn ảnh của imgInput
             imgInput.src = imgUrl
         }
-
+        // Đọc tệp dưới dạng Data URL
         fileReader.readAsDataURL(file.files[0])
-    }
-    else{
+    } else {
+        // Hiển thị thông báo lỗi nếu tệp quá lớn
         alert("This file is too large!")
     }
 }
 
-
-function showInfo(){
+function showInfo() {
+    // Xóa tất cả các chi tiết nhân viên hiện có
     document.querySelectorAll('.employeeDetails').forEach(info => info.remove())
-    getData.forEach((element, index) => {
-        let createElement = `<tr class="employeeDetails">
-            <td>${index+1}</td>
-            <td><img src="${element.picture}" alt="" width="50" height="50"></td>
-            <td>${element.employeeName}</td>
-            <td>${element.employeeAge}</td>
-            <td>${element.employeeCity}</td>
-            <td>${element.employeeEmail}</td>
-            <td>${element.employeePhone}</td>
-            <td>${element.employeePost}</td>
-            <td>${element.startDate}</td>
 
+    // Duyệt qua dữ liệu nhân viên và hiển thị thông tin
+    getData.forEach((element, index) => {
+        // Tạo một dòng mới cho mỗi nhân viên
+        let createElement = `<tr class="employeeDetails">
+            <td>${index + 1}</td> <!-- Số thứ tự -->
+            <td><img src="${element.picture}" alt="" width="50" height="50"></td> <!-- Ảnh đại diện -->
+            <td>${element.employeeName}</td> <!-- Tên nhân viên -->
+            <td>${element.employeeAge}</td> <!-- Tuổi nhân viên -->
+            <td>${element.employeeCity}</td> <!-- Thành phố nhân viên -->
+            <td>${element.employeeEmail}</td> <!-- Email nhân viên -->
+            <td>${element.employeePhone}</td> <!-- Số điện thoại nhân viên -->
+            <td>${element.employeePost}</td> <!-- Chức vụ nhân viên -->
+            <td>${element.startDate}</td> <!-- Ngày bắt đầu làm việc -->
 
             <td>
+                <!-- Nút xem thông tin nhân viên -->
                 <button class="btn btn-success" onclick="readInfo('${element.picture}', '${element.employeeName}', '${element.employeeAge}', '${element.employeeCity}', '${element.employeeEmail}', '${element.employeePhone}', '${element.employeePost}', '${element.startDate}')" data-bs-toggle="modal" data-bs-target="#readData"><i class="bi bi-eye"></i></button>
 
+                <!-- Nút chỉnh sửa thông tin nhân viên -->
                 <button class="btn btn-primary" onclick="editInfo(${index}, '${element.picture}', '${element.employeeName}', '${element.employeeAge}', '${element.employeeCity}', '${element.employeeEmail}', '${element.employeePhone}', '${element.employeePost}', '${element.startDate}')" data-bs-toggle="modal" data-bs-target="#userForm"><i class="bi bi-pencil-square"></i></button>
 
+                <!-- Nút xóa thông tin nhân viên -->
                 <button class="btn btn-danger" onclick="deleteInfo(${index})"><i class="bi bi-trash"></i></button>
-                            
             </td>
         </tr>`
 
+        // Thêm dòng mới vào bảng thông tin người dùng
         userInfo.innerHTML += createElement
     })
 }
+
 showInfo()
 
 
-function readInfo(pic, name, age, city, email, phone, post, sDate){
-    document.querySelector('.showImg').src = pic,
-    document.querySelector('#showName').value = name,
-    document.querySelector("#showAge").value = age,
-    document.querySelector("#showCity").value = city,
-    document.querySelector("#showEmail").value = email,
-    document.querySelector("#showPhone").value = phone,
-    document.querySelector("#showPost").value = post,
+function readInfo(pic, name, age, city, email, phone, post, sDate) {
+    // Cập nhật ảnh đại diện
+    document.querySelector('.showImg').src = pic
+    // Cập nhật tên
+    document.querySelector('#showName').value = name
+    // Cập nhật tuổi
+    document.querySelector("#showAge").value = age
+    // Cập nhật thành phố
+    document.querySelector("#showCity").value = city
+    // Cập nhật email
+    document.querySelector("#showEmail").value = email
+    // Cập nhật số điện thoại
+    document.querySelector("#showPhone").value = phone
+    // Cập nhật bài viết
+    document.querySelector("#showPost").value = post
+    // Cập nhật ngày
     document.querySelector("#showsDate").value = sDate
 }
 
-
-function editInfo(index, pic, name, Age, City, Email, Phone, Post, Sdate){
+function editInfo(index, pic, name, Age, City, Email, Phone, Post, Sdate) {
+    // Đặt trạng thái chỉnh sửa thành true
     isEdit = true
+    // Lưu chỉ mục của người dùng đang chỉnh sửa
     editId = index
+    // Cập nhật ảnh đại diện
     imgInput.src = pic
+    // Cập nhật tên người dùng
     userName.value = name
+    // Cập nhật tuổi
     age.value = Age
-    city.value =City
-    email.value = Email,
-    phone.value = Phone,
-    post.value = Post,
+    // Cập nhật thành phố
+    city.value = City
+    // Cập nhật email
+    email.value = Email
+    // Cập nhật số điện thoại
+    phone.value = Phone
+    // Cập nhật bài viết
+    post.value = Post
+    // Cập nhật ngày
     sDate.value = Sdate
-
+    // Thay đổi văn bản nút gửi thành "Cập nhật"
     submitBtn.innerText = "Update"
+    // Thay đổi tiêu đề modal thành "Cập nhật biểu mẫu"
     modalTitle.innerText = "Update The Form"
 }
 
-
-function deleteInfo(index){
-    if(confirm("Are you sure want to delete?")){
+function deleteInfo(index) {
+    // Hiển thị hộp thoại xác nhận trước khi xóa
+    if (confirm("Are you sure want to delete?")) {
+        // Xóa thông tin tại chỉ mục đã cho trong mảng getData
         getData.splice(index, 1)
+        // Cập nhật lại dữ liệu trong localStorage
         localStorage.setItem("userProfile", JSON.stringify(getData))
+        // Cập nhật hiển thị thông tin sau khi xóa
         showInfo()
     }
 }
 
 
-form.addEventListener('submit', (e)=> {
-    e.preventDefault()
+    form.addEventListener('submit', (e) => {
+        // Ngăn chặn hành động mặc định của form (gửi đi)
+        e.preventDefault()
 
-    const information = {
-        picture: imgInput.src == undefined ? "./image/Profile Icon.webp" : imgInput.src,
-        employeeName: userName.value,
-        employeeAge: age.value,
-        employeeCity: city.value,
-        employeeEmail: email.value,
-        employeePhone: phone.value,
-        employeePost: post.value,
-        startDate: sDate.value
-    }
+        // Tạo đối tượng thông tin từ các trường trong biểu mẫu
+        const information = {
+            // Kiểm tra xem có ảnh đại diện không, nếu không thì sử dụng ảnh mặc định
+            picture: imgInput.src == undefined ? "./image/Profile Icon.webp" : imgInput.src,
+            employeeName: userName.value,  // Tên nhân viên
+            employeeAge: age.value,         // Tuổi nhân viên
+            employeeCity: city.value,       // Thành phố nhân viên
+            employeeEmail: email.value,     // Email nhân viên
+            employeePhone: phone.value,     // Số điện thoại nhân viên
+            employeePost: post.value,       // Chức vụ nhân viên
+            startDate: sDate.value          // Ngày bắt đầu làm việc
+        }
 
-    if(!isEdit){
-        getData.push(information)
-    }
-    else{
-        isEdit = false
-        getData[editId] = information
-    }
+        // Kiểm tra trạng thái chỉnh sửa
+        if (!isEdit) {
+            // Nếu không chỉnh sửa, thêm thông tin mới vào danh sách
+            getData.push(information)
+        } else {
+            // Nếu đang chỉnh sửa, cập nhật thông tin trong danh sách
+            isEdit = false
+            getData[editId] = information
+        }
 
-    localStorage.setItem('userProfile', JSON.stringify(getData))
+        // Lưu danh sách thông tin vào localStorage
+        localStorage.setItem('userProfile', JSON.stringify(getData))
 
-    submitBtn.innerText = "Submit"
-    modalTitle.innerHTML = "Fill The Form"
+        // Đặt lại văn bản nút gửi và tiêu đề modal về trạng thái ban đầu
+        submitBtn.innerText = "Submit"
+        modalTitle.innerHTML = "Fill The Form"
 
-    showInfo()
+        // Hiển thị thông tin trong bảng
+        showInfo()
 
-    form.reset()
+        // Đặt lại biểu mẫu về trạng thái ban đầu
+        form.reset()
 
-    imgInput.src = "./image/Profile Icon.webp"  
+        // Đặt ảnh đại diện về ảnh mặc định
+        imgInput.src = "./image/Profile Icon.webp"  
 
-    // modal.style.display = "none"
-    // document.querySelector(".modal-backdrop").remove()
-})
+        // Đóng modal (bình luận lại để có thể sử dụng khi cần)
+        // modal.style.display = "none"
+        // document.querySelector(".modal-backdrop").remove()
+    })
     </script>
   </body>
 </html>
